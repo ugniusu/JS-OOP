@@ -1,118 +1,104 @@
+"use strict";
+
 class Person {
-  constructor(vardas, pavarde, amzius, elPastas) {
+  constructor(vardas, pavarde, elPastas, amzius) {
     this.name = vardas;
     this.lastName = pavarde;
-    this.age = amzius;
     this.email = elPastas;
+    this.age = amzius;
   }
   getPersonInfo() {
     console.log(
-      `Vardas: ${this.name}\npavarde: ${this.lastName}\nazmius: ${this.age}\nEl.Pastas: ${this.email}`
+      `Vardas: ${this.name}\nPavarde: ${this.lastName}\nEl.Pastas: ${this.email}\nAmzius: ${this.age}`
     );
   }
 }
 
-const jonas = new Person("Jonas", "Jonaitis", 24, "jonas.jonaitis@example.com");
-const petras = new Person(
-  "Petras",
-  "Dovydaitis",
-  38,
-  "petras.petraitis@example.com"
-);
-const algis = new Person(
-  "Algis",
-  "Algiauskas",
-  46,
-  "algis.algiauskas@example.com"
-);
-jonas.getPersonInfo();
-petras.getPersonInfo();
-algis.getPersonInfo();
+const ugnius = new Person("Ugnius", "Uscilas", "ugniusu@gmail.com", 27);
 
-////////////////////////////////////////////////////////////////////
-// STATIC
+ugnius.getPersonInfo();
+
+//////////////////////////////////////////
 
 // class Animal {
-//   static greeting() {
-//     console.log("I am weird animal!");
+//   static greet() {
+//     console.log("Warrap ni**a !");
 //   }
 //   hello() {
 //     console.log("Imma weird af !");
 //   }
 // }
-// const minotauras = new Animal();
-// console.log(minotauras);
-// Animal.greeting();
-// minotauras.hello();
 
-//////////////////////////////////////////////////////////////////
+// const kentauras = new Animal();
+// console.log(kentauras);
+// Animal.greet();
+// kentauras.hello();
+
+/////////////////////////////////////////
+
 class Student extends Person {
-  constructor(vardas, pavarde, amzius, elPastas, kursas, vidurkis) {
-    super(vardas, pavarde, amzius, elPastas);
+  constructor(vardas, pavarde, elPastas, amzius, kursas, vidurkis) {
+    super(vardas, pavarde, elPastas, amzius);
     this.course = kursas;
     this.avg = vidurkis;
   }
-  printStudentInfo() {
-    super.getPersonInfo();
-    console.log(`\nKursas: ${this.course}\nPazymiu vidurkis: ${this.avg}`);
+  getStudentInfo() {
+    console.log(
+      `Vardas: ${this.name}\nPavarde: ${this.lastName}\nEl.Pastas: ${this.email}\nAmzius: ${this.age}\nKursas: ${this.course}\nVidurkis: ${this.avg}`
+    );
   }
 }
 
-const jonas2 = new Student(
-  "Jonas",
-  "Jonaitis",
-  24,
-  "jonas.jonaitis@example.com",
-  "JavaScript",
-  7.9
+const petras = new Student(
+  "Petras",
+  "Dovydaitis",
+  "grietininis@gmail.com",
+  38,
+  "Givianimas",
+  4
 );
-jonas2.printStudentInfo();
+petras.getStudentInfo();
 
-//////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////
 class Teacher extends Person {
-  constructor(vardas, pavarde, amzius, elPastas, alga, dalykas) {
-    super(vardas, pavarde, amzius, elPastas);
+  constructor(vardas, pavarde, elPastas, amzius, dalykas, alga) {
+    super(vardas, pavarde, elPastas);
     this.subject = dalykas;
+    this.age = amzius;
     this.salary = alga;
     this.topics = [];
   }
-
   isHappy() {
-    if (this.salary > 1200) {
-      console.log("Nu zuper");
-    } else if (this.salary > 800) {
+    if (this.salary > 800) {
       console.log("Not bad");
+    } else if (this.salary > 1200) {
+      console.log("Hooray");
     } else {
-      console.log("Poor bitch");
+      console.log("Quit the job !");
     }
   }
-
-  setTopic(topikas) {
-    this.topics.push(topikas);
+  setTopic(topic) {
+    this.topics.push(topic);
   }
-
   getTopic() {
-    this.topics.forEach((el) => {
-      console.log(`Mokytoja ${this.name}\nDesto: ${el}`);
-    });
+    this.topics.forEach((el) =>
+      console.log(`Mokytoja ${this.name} desto ${el}`)
+    );
   }
 }
 
-const mokytoja = new Teacher(
-  "Terese",
-  "Jarmaliene",
-  40,
-  "jarmaliene@example.com",
-  800,
-  "Lietuviu kalba"
+const giedre = new Teacher(
+  "Giedre",
+  "Kurvelyte",
+  "kurvelyte@gmail.com",
+  24,
+  "matematika",
+  750
 );
-console.log(mokytoja);
 
-mokytoja.isHappy();
-mokytoja.setTopic("Gramatika");
-mokytoja.setTopic("Gramatika");
-console.log(mokytoja);
+giedre.isHappy();
 
-const topikai = ["oop", "array", "xxx", ""];
-topikai.forEach((topic) => mokytoja.setTopic(topic));
-mokytoja.getTopic();
+giedre.setTopic("diskriminantas");
+giedre.setTopic("parabole");
+console.log(giedre);
+giedre.getTopic();
